@@ -1,0 +1,2 @@
+# LaiCode
+Daily record
