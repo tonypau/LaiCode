@@ -1,0 +1,40 @@
+/**
+ * public class TreeNode {
+ *   public int key;
+ *   public TreeNode left;
+ *   public TreeNode right;
+ *   public TreeNode(int key) {
+ *     this.key = key;
+ *   }
+ * }
+ */
+public class Solution {
+  public List<Integer> diagonalSum(TreeNode root) {
+    Map<Integer, Integer> map = new HashMap<>();
+    helper(root, map, 0);
+    return convert(map);
+  }
+  
+  private void helper(TreeNode root, Map<Integer, Integer> map, int level) {
+    if (root == null) {
+      return;
+    }
+    Integer cur = map.get(level);
+    if (cur == null) {
+      map.put(level, root.key);
+    } else {
+      map.put(level, root.key + cur);
+    }
+    helper(root.left, map, level + 1);
+    helper(root.right, map, level);
+  }
+  
+  private List<Integer> convert(Map<Integer, Integer> map) {
+    List<Integer> res = new ArrayList<>();
+    for (int i = 0; i < map.size(); i++) {
+      res.add(map.get(i));
+    }
+    return res;
+  }
+}
+
