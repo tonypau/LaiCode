@@ -8,6 +8,7 @@
  *   }
  * }
  */
+ 
 public class Solution {
   public List<Integer> diagonalSum(TreeNode root) {
     Map<Integer, Integer> map = new HashMap<>();
