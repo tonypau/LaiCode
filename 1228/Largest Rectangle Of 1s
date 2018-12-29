@@ -2,15 +2,17 @@
   dp in the first sight, but using histogram.
   think about looking at the matrix in the bottom-up way as a histogram.
   add up every row from the row above, then find the max area in the current row using histogram method.
-  0 1 1 0
-  1 1 1 1
-  1 1 1 1
-  1 1 0 0
   
-  row1: 0 1 1 0    max: 2
-  row2: 1 2 2 1    max: 4
-  row3: 2 3 3 2    max: 8
-  row4: 3 4 0 0    max: 6, Math.max(6, 8) = 8
+  For example:
+    0 1 1 0
+    1 1 1 1
+    1 1 1 1
+    1 1 0 0
+  
+    row1: 0 1 1 0    max: 2
+    row2: 1 2 2 1    max: 4
+    row3: 2 3 3 2    max: 8
+    row4: 3 4 0 0    max: 6, Math.max(6, 8) = 8
 */
 
 public class Solution {
