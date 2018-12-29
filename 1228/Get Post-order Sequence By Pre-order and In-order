@@ -1,3 +1,5 @@
+// the submission of this problem has some bug in laicode system 
+
 public class Solution {
   // record the index order of result insertion 
   static int postIndex = 0;
@@ -26,4 +28,4 @@ public class Solution {
 	}
 }
 
-// the submission of this problem has some bug in laicode system 
+
