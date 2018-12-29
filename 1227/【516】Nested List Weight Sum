@@ -4,6 +4,7 @@ public class Solution {
 		int depth = 0;
 		int res = 0;
 		int i = 0;
+    
 		while (i < array.length) {
 			if (array[i] == '[') {
 				depth++;
