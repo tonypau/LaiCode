@@ -1,4 +1,5 @@
 /*
+
 Iterate through all n values as root.
 for ith root, there are 1~i-1 values in the left subtree (x possiblities of bsts) 
   and i+1 ~ N in the right subtree (y possiblities of bsts).
@@ -9,6 +10,7 @@ count[4] = count[0] * count[3]      // 1 as root
           + count[1] * count[2]      // 2 as root
           + count[2] * count[1]      // 3 as root
           + count[4] * count[0]      // 4 as root
+          
 */
 
 class Solution {
