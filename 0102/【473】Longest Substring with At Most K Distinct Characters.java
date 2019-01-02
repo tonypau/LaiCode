@@ -27,7 +27,7 @@ public class Solution {
         count++;
         map.put(arr[i], 1);
       }
-      while (count == k + 1 || (count == k && i == arr.length - 1)) {
+      while (count == k + 1 || (count <= k && i == arr.length - 1 && left < arr.length)) {
         if (count == k + 1) {
           if (maxLen < i - left) {
             maxLen = i - left;
