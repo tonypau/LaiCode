@@ -1,0 +1,16 @@
+public class Solution {
+  public List<Integer> factors(int target) {
+    List<Integer> res = new ArrayList<>();
+    int factor = 2;
+    while (factor <= target) {
+      if (target / factor * factor == target) {
+        res.add(factor);
+        target = target / factor;
+      } else {
+        factor++;
+      }
+    }
+    return res;
+  }
+}
+
