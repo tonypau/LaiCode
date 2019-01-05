@@ -12,7 +12,7 @@ public class Solution {
   private static final Map<Character, List<String>> myMap = createMap();
 	private static Map<Character, List<String>> createMap() {
 		Map<Character, List<String>> myMap = new HashMap<>();
-    myMap.put('0', Arrays.asList("Zero"));
+    		myMap.put('0', Arrays.asList("Zero"));
 		myMap.put('1', Arrays.asList("One"));
 		myMap.put('2', Arrays.asList("Two", "Twenty"));
 		myMap.put('3', Arrays.asList("Three", "Thirty"));
@@ -44,7 +44,7 @@ public class Solution {
 	private static final List<String> list = Arrays.asList("Hundred", "", "Thousand", "Million", "Billion");
 
 	public String numberToWords(int num) {
-    if (num == 0) return "Zero";
+	    if (num == 0) return "Zero";
 		String numString = convert(num); // add ','
 		List<String> res = new ArrayList<>();
 		int i = numString.length() - 1;
@@ -92,8 +92,8 @@ public class Solution {
 			char cur = string.charAt(s);
 			if (cur == '0') {
 				i++;
-        s++;
-        continue;
+        			s++;
+			        continue;
 			} else if (i == 1) {
 				if (cur == '1') {
 					res += myMap2.get(string.substring(s, s + 2)) + " ";
