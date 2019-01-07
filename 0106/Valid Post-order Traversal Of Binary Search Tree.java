@@ -1,4 +1,5 @@
 /*
+【304】
 Given an array with integers, determine whether the array contains a valid postorder traversal sequence a BST.
 
 Assumptions:
