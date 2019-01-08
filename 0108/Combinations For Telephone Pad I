@@ -1,0 +1,63 @@
+/*
+【272】
+Given a telephone keypad, and an int number, print all words which are possible by pressing these numbers, the output strings should be sorted.
+
+{0 : "", 1 : "", 2 : "abc", 3 : "def", 4 : "ghi", 5 : "jkl", 6 : "mno", 7 : "pqrs", 8 : "tuv", 9 : "wxyz"} 
+
+Assumptions:
+
+The given number >= 0
+Examples:
+
+if input number is 231, possible words which can be formed are:
+
+[ad, ae, af, bd, be, bf, cd, de, df]
+*/
+
+public class Solution {
+  private static Map<Character, String> map = createMap();
+  private static Map<Character, String> createMap() {
+    Map<Character, String> map = new HashMap<>();
+    map.put('0', "");
+    map.put('1', "");
+    map.put('2', "abc");
+    map.put('3', "def");
+    map.put('4', "ghi");
+    map.put('5', "jkl");
+    map.put('6', "mno");
+    map.put('7', "pqrs");
+    map.put('8', "tuv");
+    map.put('9', "wxyz");
+    return map;
+  }
+  public String[] combinations(int number) {
+    char[] arr = String.valueOf(number).toCharArray();
+    List<String> res = new ArrayList<>();
+    StringBuilder sb = new StringBuilder();
+    helper(res, sb, arr, 0, 0);
+    String[] out = new String[res.size()];
+    for (int i = 0; i < out.length; i++) {
+      out[i] = res.get(i);
+    }
+    return out;
+  }
+
+  private void helper(List<String> res, StringBuilder sb, char[] arr, int index, int count) {
+    if (count == arr.length) {
+      res.add(sb.toString());
+      return;
+    }
+    String string = map.get(arr[index]);
+    if (string == "") {
+      helper(res, sb, arr, index + 1, count + 1);
+    } else {
+      for (int j = 0; j < string.length(); j++) {
+        char c = string.charAt(j);
+        sb.append(c);
+        helper(res, sb, arr, index + 1, count + 1);
+        sb.deleteCharAt(sb.length() - 1);
+      }
+    }
+  }
+}
+
