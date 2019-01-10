@@ -50,3 +50,33 @@ public class Solution {
     return maxLen;
   }
 }
+
+
+// After modification,
+public class Solution {
+  public int lengthOfLongestSubstringKDistinct(String input, int k) {
+    if (input == null || k == 0) return 0;
+    if (input.length() <= k) return input.length();
+    Map<Character, Integer> map = new HashMap<>();
+    int left = 0;
+    int maxLen = 0;
+    for (int i = 0; i < input.length(); i++) {
+      Integer num = map.get(input.charAt(i));
+      if (num == null) map.put(input.charAt(i), 1);
+      else map.put(input.charAt(i), num + 1);
+      // we use map.size() instead of count
+      while (map.size() > k) {
+        Integer rmCount = map.get(input.charAt(left));
+        if (rmCount == 1) {
+          map.remove(input.charAt(left));
+        } else {
+          map.put(input.charAt(left), rmCount - 1);
+        }
+        left++;
+      }
+      // put updating maxLen outside the while loop
+      maxLen = Math.max(maxLen, i - left + 1);
+    }
+    return maxLen;
+  }
+}
