@@ -17,51 +17,51 @@ input = "aabcccc", k = 2, output = "bcccc".
 public class Solution {
   public String longest(String input, int k) {
     // corner case has multiple conditions.
-		if (input == null || input.length() < k) return null;
+    if (input == null || input.length() < k) return null;
     if (k == 0) return "";
-    
-		char[] arr = input.toCharArray();
-		Map<Character, Integer> map = new HashMap<>();  
-		int left = 0;
-		int maxLen = Integer.MIN_VALUE;
-		int count = 0;
-		String res = null;
-		for (int i = 0; i < arr.length; i++) {
-			Integer num = map.get(arr[i]);
-			if (num != null) {
-				if (num == 0) {
-					count++;
-				}
-				map.put(arr[i], num + 1);
-			} else {
-				count++;
-				map.put(arr[i], 1);
-			}
+
+    char[] arr = input.toCharArray();
+    Map<Character, Integer> map = new HashMap<>();  
+    int left = 0;
+    int maxLen = Integer.MIN_VALUE;
+    int count = 0;
+    String res = null;
+    for (int i = 0; i < arr.length; i++) {
+      Integer num = map.get(arr[i]);
+      if (num != null) {
+        if (num == 0) {
+          count++;
+        }
+        map.put(arr[i], num + 1);
+      } else {
+        count++;
+        map.put(arr[i], 1);
+      }
       // NOTICE: two conditions.
       // 1) count == k + 1: in this case, we take i-1 as right bound
       // 2) count == k && i == arr.length - 1: in this case, we take i as right bound
-			while (count == k + 1 || (i == arr.length - 1 && count == k)) {
+      while (count == k + 1 || (i == arr.length - 1 && count == k)) {
         // handle these two cases respectively
-				if (count == k + 1) {
-					if (maxLen < i - left) {
+        if (count == k + 1) {
+          if (maxLen < i - left) {
             maxLen = i - left;
-						res = input.substring(left, i);
-					}
-				} else {
-					if (maxLen < i - left + 1) {
-						maxLen = i - left + 1;
-						res = input.substring(left, i + 1);
-					}	
-				}
-				Integer n = map.get(arr[left]);
-				if (n == 1) {
-					count--;
-				}
-				map.put(arr[left], n - 1);
-				left++;
-			}
-		}
-		return res;
-	}
+            res = input.substring(left, i);
+          }
+        } else {
+          if (maxLen < i - left + 1) {
+            maxLen = i - left + 1;
+            res = input.substring(left, i + 1);
+          } 
+        }
+        Integer n = map.get(arr[left]);
+        if (n == 1) {
+          count--;
+        }
+        map.put(arr[left], n - 1);
+        left++;
+      }
+    }
+    return res;
+  }
 }
 
