@@ -17,6 +17,7 @@ public class Solution {
   }
   
   // find the longest ascending sequence
+  // O(n^2). to be optimized to O(nlogn)
   private int helper(int[] array) {
     int[] inc = new int[array.length];
     int max = 0;
