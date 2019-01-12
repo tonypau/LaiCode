@@ -18,9 +18,37 @@ The given graph is not null
 * }
 */
 
-// these two are dfs, also can be solved with bfs
+// bfs
+public class Solution {
+  public List<GraphNode> copy(List<GraphNode> graph) {
+    if (graph == null) return null;
+    List<GraphNode> list = new ArrayList<>();
+    Map<GraphNode, GraphNode> map = new HashMap<>();
+    Queue<GraphNode> queue = new LinkedList<>();
+    for (GraphNode node : graph) {
+      queue.offer(node);
+      while (!queue.isEmpty()) {
+        GraphNode cur = queue.poll();
+        if (!map.containsKey(cur)) {
+          map.put(cur, new GraphNode(cur.key));
+          list.add(map.get(cur));
+        }
+        for (GraphNode nei : cur.neighbors) {
+          if (!map.containsKey(nei)) {
+            map.put(nei, new GraphNode(nei.key));
+            list.add(map.get(nei));
+          }  
+          map.get(cur).neighbors.add(map.get(nei));
+        }
+      }
+    }
+    return list;
+  }
+}
 
-// Sol1:
+
+
+// dfs version 1
 public class Solution {
   public List<GraphNode> copy(List<GraphNode> graph) {
     if (graph == null) return null;
@@ -46,7 +74,7 @@ public class Solution {
   }
 }
 
-// Sol2:
+// dfs version 2
 public class Solution {
   public List<GraphNode> copy(List<GraphNode> graph) {
     // Write your solution here
