@@ -53,6 +53,8 @@ public class Solution {
     return convert(map, min);
   }
   
+ // here we record a min value to keep the keys in map in order
+ // remember, we can just use a treemap to record the order
   private List<Integer> convert(Map<Integer, List<Integer>> map, int min) {
     List<Integer> res = new ArrayList<>();
     for (int i = min; i < min + map.size(); i++) {
