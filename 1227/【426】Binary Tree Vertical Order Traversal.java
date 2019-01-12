@@ -8,62 +8,55 @@
  *   }
  * }
  */
- 
 public class Solution {
   static class Cell {
-    TreeNode node;
     int level;
-    
-    public Cell(TreeNode node, int level) {
-      this.node = node;
+    TreeNode node;
+    Cell(TreeNode node, int level) {
       this.level = level;
+      this.node = node;
     }
-  }
-  public List<Integer> verticalOrder(TreeNode root) {
-    List<Integer> res = new ArrayList<>();
-    // corner case
-    if (root == null) return res;
-    
-    Deque<Cell> stack = new LinkedList<>();
-    Map<Integer, List<Integer>> map = new HashMap<>();
-    // initialize
-    stack.offerLast(new Cell(root, 0));
-    // maintain min level to help convert map to list result
-    int min = 0;
-    
-    // level traversal
-    while (!stack.isEmpty()) {
-      Cell cur = stack.pollFirst();
-      min = Math.min(min, cur.level);
-      List<Integer> list = map.get(cur.level);
-      if (list == null) {
-        List<Integer> l = new ArrayList<>();
-        l.add(cur.node.key);
-        map.put(cur.level, l);
-      } else {
-        list.add(cur.node.key);
-      }
-      if (cur.node.left != null) {
-        stack.offerLast(new Cell(cur.node.left, cur.level - 1));
-      }
-      if (cur.node.right != null) {
-        stack.offerLast(new Cell(cur.node.right, cur.level + 1));
-      }
-    }
-    return convert(map, min);
   }
   
- // here we record a min value to keep the keys in map in order
- // remember, we can just use a treemap to record the order
-  private List<Integer> convert(Map<Integer, List<Integer>> map, int min) {
+  public List<Integer> verticalOrder(TreeNode root) {
+    Map<Integer, List<TreeNode>> map = new HashMap<>();
     List<Integer> res = new ArrayList<>();
-    for (int i = min; i < min + map.size(); i++) {
-      List<Integer> list = map.get(i);
-      for (int num : list) {
-        res.add(num);
+    if (root == null) return res;
+    Queue<Cell> queue = new LinkedList<>();
+    queue.offer(new Cell(root, 0));
+    int min = 0;
+    while (!queue.isEmpty()) {
+      int size = queue.size();
+      for (int i = 0; i < size; i++) {
+        Cell cur = queue.poll();
+        min = Math.min(min, cur.level);
+        List<TreeNode> list = map.get(cur.level);
+        if (list != null) {
+          list.add(cur.node);
+          map.put(cur.level, list);
+        } else {
+          List<TreeNode> l = new ArrayList<>();
+          l.add(cur.node);
+          map.put(cur.level, l);
+        }
+        if (cur.node.left != null) {
+          queue.add(new Cell(cur.node.left, cur.level - 1));
+        }
+        if (cur.node.right != null) {
+          queue.add(new Cell(cur.node.right, cur.level + 1));
+        }
       }
     }
+    convert(map, res, min);
     return res;
+  }
+  
+  private void convert(Map<Integer, List<TreeNode>> map, List<Integer> res, int min) {
+    for (int i = min; i < min + map.size(); i++) {
+      for (TreeNode node : map.get(i)) {
+        res.add(node.key);
+      }
+    }
   }
 }
 
