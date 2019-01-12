@@ -19,6 +19,7 @@ The given graph is not null
 */
 
 // bfs
+// NOTICE: two key steps of bfs: 1) expand, 2) generate
 public class Solution {
   public List<GraphNode> copy(List<GraphNode> graph) {
     if (graph == null) return null;
@@ -45,8 +46,6 @@ public class Solution {
     return list;
   }
 }
-
-
 
 // dfs version 1
 public class Solution {
