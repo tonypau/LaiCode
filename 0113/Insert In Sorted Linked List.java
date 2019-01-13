@@ -16,6 +16,7 @@ public class Solution {
       return node;
     }
     ListNode cur = head;
+    // find the last element that should be in the left side of the new node
     while (cur != null && cur.next != null) {
       if (cur.value <= value && cur.next.value <= value) {
         cur = cur.next;
