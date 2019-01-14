@@ -67,4 +67,3 @@ public class Solution {
     return false;
   }
 }
-
