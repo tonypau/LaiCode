@@ -45,6 +45,7 @@ public class Solution {
 }
 
 // somebody else's version..
+// recursion
 public class Solution {
   public int closest(TreeNode root, int target) {
     if (root.key == target) return root.key;
@@ -55,6 +56,20 @@ public class Solution {
     }
     int res = closest(next, target);
     return Math.abs(res - target) < Math.abs(root.key - target) ? res : root.key;
+  }
+}
+
+// iterative
+public class Solution {
+  public int closest(TreeNode root, int target) {
+    int closest = root.key;
+    while (root != null) {
+      if (Math.abs(closest - target) > Math.abs(root.key - target)) {
+        closest = root.key;
+      }    
+      root = root.key < target ? root.right : root.left;
+    }
+    return closest;
   }
 }
 
