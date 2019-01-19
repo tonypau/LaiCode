@@ -1,3 +1,4 @@
+// O(n!)
 public class Solution {
   public List<String> permutations(String set) {
     List<String> res = new ArrayList<>();
