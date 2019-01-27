@@ -16,3 +16,5 @@ public class Solution {
   }
 }
 
+// another solution
+// Map<Integer, Integer> record the count of appearance of each element
