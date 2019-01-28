@@ -13,6 +13,7 @@ public class Solution {
     List<GraphNode> res = new ArrayList<>();
     if (graph == null) return res;
     Map<GraphNode, GraphNode> map = new HashMap<>();
+    // 因为这里queue的作用只是用来遍历graph, 所以其实也可以不用queue。直接用graph.get(count)遍历graph即可。
     Queue<GraphNode> queue = new LinkedList<>();
     for (GraphNode node : graph) {
       queue.offer(node);
