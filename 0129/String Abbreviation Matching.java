@@ -8,7 +8,7 @@ public class Solution {
         // get number
         int length = 0;
         while (begin < pattern.length() && pattern.charAt(begin) >= '0' && pattern.charAt(begin) <= '9') {
-          length += length * 10 + pattern.charAt(begin) - '0';
+          length = length * 10 + pattern.charAt(begin) - '0';
           begin++;
         }
         j = begin;
