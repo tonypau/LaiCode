@@ -1,3 +1,6 @@
+// index: 0  1  2  3  4  5  6  7  8           
+// val:  {1, 3, 2, 5, 8, 9, 4, 7, 3}
+
 // O((n-k)*logn)
 // each sliding costs O(logn), which is used on offer() new element and poll() old one
 // maxHeap, lazy deletion
