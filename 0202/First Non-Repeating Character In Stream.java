@@ -7,7 +7,6 @@ public class Solution {
   Map<Character, ListNode> map;
   ListNode head;
   ListNode tail;
-  ListNode tailOfOne;
   public Solution() {
     this.map = new HashMap<>();
     this.head = null;
@@ -16,12 +15,10 @@ public class Solution {
   
   static class ListNode {
     char ch;
-    int count;
     ListNode prev;
     ListNode next;
     public ListNode(char ch) {
       this.ch = ch;
-      this.count = 1;
       this.prev = null;
       this.next = null;
     }
