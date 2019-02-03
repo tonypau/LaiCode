@@ -1,6 +1,7 @@
 // Due to array includes duplicate numbers,
 // when the mid one is the same with left one, we cannot ensure which part contains target, each side may contain it
 // but at least we can exclude the left one each time
+// but this solution is O(n) at worst case {3,3,3,3,1}
 public class Solution {
   public int search(int[] array, int target) {
     int left = 0;
