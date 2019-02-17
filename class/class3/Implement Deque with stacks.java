@@ -20,6 +20,19 @@
     
     Up to next n/2 remove takes 1 operations each
     
+    
+    Example：
+      ] left right [ 1 2 3 4 5 6
+      
+    when call left.remove():
+      step 1:         ] left right [ 1 2 3 
+                      buffer [ 6 5 4
+                      
+      step 2:         1 2 3] left right [
+                      buffer [ 6 5 4
+                      
+      step 3:         1 2 3] left right [ 4 5 6
+                      buffer [ 
 */
 
 public class Solution {
