@@ -10,42 +10,41 @@ Please determine whether it is possible to shuffle the numbers, such that for ea
 // case1: the first time appears, step into the next level
 // case2: the second time appears, check if the last time insertion location is correct
   public List<List<Integer>> findValidPermu(int n) {
-		List<List<Integer>> res = new ArrayList<>();
-		if(n <= 1) {
-			return res;
-		}
-		Map<Integer, Integer> map = new HashMap<>();
-		// initialize the map
-		for (int i = 1; i <= n; i++) {
-			map.put(i, 0);
-		}
-		dfs(res, 0, new ArrayList<>(), n, map);
-		return res;
-	}
+    List<List<Integer>> res = new ArrayList<>();
+    if(n <= 1) {
+      return res;
+    }
+    Map<Integer, Integer> map = new HashMap<>();
+    // initialize the map
+    for (int i = 1; i <= n; i++) {
+      map.put(i, 0);
+    }
+    dfs(res, 0, new ArrayList<>(), n, map);
+    return res;
+  }
 
-	private void dfs(List<List<Integer>> res, int index, List<Integer> temp, int n, Map<Integer, Integer> map) {
-		if (temp.size() == 2 * n) {
-			res.add(new ArrayList<>(temp));
-		}
-		for (int i = 1; i <= n; i++) {
-			//check the case1 and case2
-			if (map.get(i) == 0 || (map.get(i) == 1 && isValid(index, i, temp))) {
-				temp.add(i);
-				map.put(i, map.get(i) + 1);
-				dfs(res, index + 1, temp, n, map);
-				temp.remove(temp.size() - 1);
-				map.put(i, map.get(i) - 1);
-			}
-		}
-	}
+  private void dfs(List<List<Integer>> res, int index, List<Integer> temp, int n, Map<Integer, Integer> map) {
+    if (temp.size() == 2 * n) {
+      res.add(new ArrayList<>(temp));
+    }
+    for (int i = 1; i <= n; i++) {
+      //check the case1 and case2
+      if (map.get(i) == 0 || (map.get(i) == 1 && isValid(index, i, temp))) {
+        temp.add(i);
+        map.put(i, map.get(i) + 1);
+        dfs(res, index + 1, temp, n, map);
+        temp.remove(temp.size() - 1);
+        map.put(i, map.get(i) - 1);
+      }
+    }
+  }
 
-	private boolean isValid(int index, int num, List<Integer> list) {
-		if (index - num - 1 < 0 || list.get(index - num - 1) != num) {
-			return false;
-		}
-		return true;
-	}
-  
+  private boolean isValid(int index, int num, List<Integer> list) {
+    if (index - num - 1 < 0 || list.get(index - num - 1) != num) {
+      return false;
+    }
+    return true;
+  }
 
 // method2: similar with parenthesis inserting. find all available possibility and for-loop
   private List<int[]> DFS(int n) {
