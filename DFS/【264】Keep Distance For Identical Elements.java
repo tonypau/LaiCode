@@ -5,56 +5,46 @@ Please determine whether it is possible to shuffle the numbers, such that for ea
 */
 
 // method 1: check before adding branch
-  private List<int[]> DFS(int n) {
-    List<int[]> res = new ArrayList<>();
-    int[] helper = new int[2 * n];
-    for (int i = 0; i < n; i++) {
-      helper[i * 2] = i + 1;
-      helper[i * 2 + 1] = i + 1;
-    }
-    Set<Integer> set = new HashSet<>();
-    DFS(helper, res, set, 0, 2 * n);
-    return res;
-  }
 
-  private void DFS(int[] helper, List<int[]> res, Set<Integer> set, int index, int n) {
-    if (index == n) {
-      res.add(Arrays.copyOf(helper, helper.length));
-      return;
-    }
-    for (int i = index; i < n; i++) {
-      if (set.contains(helper[i])) {
-        if (!isValid(helper, i)) {
-          break;
-        } else {
-          swap(helper, i, index);
-          DFS(helper, res, set, index + 1, n);
-          swap(helper, i, index);
-        }
-      } else {
-        set.add(helper[i]);
-        swap(helper, i, index);
-        DFS(helper, res, set, index + 1, n);
-        swap(helper, i, index);
-        set.remove(helper[i]);
-      }
-    }
-  }
+// 2n levels, every level has n branches
+// case1: the first time appears, step into the next level
+// case2: the second time appears, check if the last time insertion location is correct
+  public List<List<Integer>> findValidPermu(int n) {
+		List<List<Integer>> res = new ArrayList<>();
+		if(n <= 1) {
+			return res;
+		}
+		Map<Integer, Integer> map = new HashMap<>();
+		// initialize the map
+		for (int i = 1; i <= n; i++) {
+			map.put(i, 0);
+		}
+		dfs(res, 0, new ArrayList<>(), n, map);
+		return res;
+	}
 
+	private void dfs(List<List<Integer>> res, int index, List<Integer> temp, int n, Map<Integer, Integer> map) {
+		if (temp.size() == 2 * n) {
+			res.add(new ArrayList<>(temp));
+		}
+		for (int i = 1; i <= n; i++) {
+			//check the case1 and case2
+			if (map.get(i) == 0 || (map.get(i) == 1 && isValid(index, i, temp))) {
+				temp.add(i);
+				map.put(i, map.get(i) + 1);
+				dfs(res, index + 1, temp, n, map);
+				temp.remove(temp.size() - 1);
+				map.put(i, map.get(i) - 1);
+			}
+		}
+	}
 
-  private boolean isValid(int[] helper, int i) {
-    if (i - helper[i] - 1 >= 0 && helper[i - helper[i] - 1] == helper[i]) {
-      return true;
-    }
-    return false;
-  }
-
-  private void swap(int[] nums, int i, int j) {
-    int tmp = nums[i];
-    nums[i] = nums[j];
-    nums[j] = tmp;
-  }
-  
+	private boolean isValid(int index, int num, List<Integer> list) {
+		if (index - num - 1 < 0 || list.get(index - num - 1) != num) {
+			return false;
+		}
+		return true;
+	}
   
 
 // method2: similar with parenthesis inserting. find all available possibility and for-loop
