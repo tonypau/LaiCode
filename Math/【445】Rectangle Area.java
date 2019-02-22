@@ -10,3 +10,5 @@ public class Solution {
     return rect1 + rect2 - height * length;
   }
 }
+
+// 先画一个长方形，分别考虑另一个的相对位置在重叠与不重叠时的所有情况。
