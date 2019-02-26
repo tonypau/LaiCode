@@ -43,4 +43,3 @@ public class Solution {
     return root.key + Math.max(left, right);
   }
 }
-
