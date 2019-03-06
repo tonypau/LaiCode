@@ -1,9 +1,10 @@
 // perform DFS on each element in matrix
 // cache[i][j] stores the longest ascending path starting from [i][j]
 
-// tc: O(n^2 * 4^n)
-//      n^2 times dfs, for each dfs, n levels and 4 branches in each level
-// sc: O(n^2)
+// tc: O(m*n * 4^n). n^2 times dfs, for each dfs, n levels and 4 branches in each level
+// but we use cache to store memorization. so overall tc is O(m*n) because actually every node is visited once
+
+// sc: O(m*n)
 //      cache space
 public class Solution {
   int[][] dirs = new int[][]{{0,1}, {1,0}, {-1,0}, {0,-1}};
