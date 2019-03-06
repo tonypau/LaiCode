@@ -13,7 +13,7 @@ public class Solution {
       if (set.contains(input.substring(0, i))) {
         dp[i] += 1;
       }
-      for (int j = 1; j < i; j++) {
+      for (int j = i - 2 >= 0 ? i - 2 : 1; j < i; j++) {
         String s1 = input.substring(j, i);
         if (set.contains(s1)) {
           dp[i] += dp[j];
